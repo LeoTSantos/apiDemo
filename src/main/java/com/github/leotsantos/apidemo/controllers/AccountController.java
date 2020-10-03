@@ -18,6 +18,12 @@ public class AccountController {
 	@Autowired
 	private AccountManager manager;
 	
+	@RequestMapping(value = "/reset", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void resetStatus() {
+        manager.reset();
+    }
+	
 	@RequestMapping(value = "/balance", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public int getBalance(@RequestParam(name = "account_id") int accountId) throws AccountNotFoundException {
