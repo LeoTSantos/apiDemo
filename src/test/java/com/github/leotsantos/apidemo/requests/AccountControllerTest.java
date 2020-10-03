@@ -20,6 +20,15 @@ public class AccountControllerTest {
     private MockMvc mockMvc;
 	
 	@Test
+	public void resetStatus_shouldReturnOk() throws Exception {
+		String response = mockMvc.perform(MockMvcRequestBuilders.post("/reset"))
+	            .andExpect(MockMvcResultMatchers.status().isOk())
+	            .andReturn()
+	            .getResponse()
+	            .getContentAsString();
+	}
+	
+	@Test
 	public void getBalanceInvalidAccount_shouldReturnNotFound() throws Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/balance?account_id=1234"))
 	            .andExpect(MockMvcResultMatchers.status().isNotFound())
