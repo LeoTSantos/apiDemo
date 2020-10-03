@@ -20,4 +20,40 @@ public class AccountManager {
 		System.out.print("All data cleared.");
 	}
 	
+	public Account getAccount(String id) throws AccountNotFoundException {
+		for(Account a:accountList) {
+			if(a.getId().equals(id))
+				return a;
+		}
+		throw new AccountNotFoundException("Account with id " + id + " not found");
+	}
+	
+	public void makeDeposit(String id, int amount) {
+		try {
+			getAccount(id).changeBalance(amount);
+		} catch (AccountNotFoundException e) {
+			createAccount(id).changeBalance(amount);
+		}
+	}
+	
+	public void makeWithdraw(String id, int amount) throws AccountNotFoundException {
+		getAccount(id).changeBalance(-amount);
+	}
+	
+	public void makeTransfer(String origin, String destination, int amount) throws AccountNotFoundException {
+		getAccount(origin).changeBalance(-amount);
+		getAccount(destination).changeBalance(amount);
+	}
+	
+	private Account createAccount(String id) {
+		try {
+			System.out.print("Account already created");
+			return getAccount(id);
+		} catch (AccountNotFoundException e) {
+			System.out.print("Account Not Found, creating account with id " + id);
+			Account acc = new Account(id);
+			accountList.add(acc);
+			return acc;
+		}
+	}
 }

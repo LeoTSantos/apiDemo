@@ -3,11 +3,15 @@ package com.github.leotsantos.apidemo.domain;
 public class EventBody {
 	
 	private String type;
-	private Integer origin;
-	private Integer destination;
+	private String origin;
+	private String destination;
 	private int amount;
 	
-	public EventBody(String type, Integer origin, Integer destination, int amount) {
+	public EventBody() {
+		
+	}
+	
+	public EventBody(String type, String origin, String destination, int amount) {
 		this.type = type;
 		this.origin = origin;
 		this.setDestination(destination);
@@ -20,16 +24,16 @@ public class EventBody {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Integer getOrigin() {
+	public String getOrigin() {
 		return origin;
 	}
-	public void setOrigin(Integer origin) {
+	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-	public Integer getDestination() {
+	public String getDestination() {
 		return destination;
 	}
-	public void setDestination(Integer destination) {
+	public void setDestination(String destination) {
 		this.destination = destination;
 	}	
 	public int getAmount() {

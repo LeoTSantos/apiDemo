@@ -55,7 +55,7 @@ public class GreetingsControllerTest {
     @Test
     @Order(1)
     public void greetJava() throws Exception {
-        String response = mockMvc.perform(MockMvcRequestBuilders.get("/Java"))
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/balance?account_id=1234"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andReturn()
             .getResponse()
@@ -93,10 +93,9 @@ public class GreetingsControllerTest {
     public void greetRodJohnson() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/RodJohnson"))
             .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.content().json("{\"destination\": {\"id\":\"100\", \"balance\":10}}"))
             .andReturn()
             .getResponse()
             .getContentAsString();
-
-        Assert.assertEquals(response, "Hello RodJohnson!");
     }
 }

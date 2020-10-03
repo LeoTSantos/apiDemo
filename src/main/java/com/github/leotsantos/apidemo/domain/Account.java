@@ -1,15 +1,15 @@
 package com.github.leotsantos.apidemo.domain;
 
 public class Account {
-	private int id;
+	private String id;
 	private int balance;
 	
-	public Account(int id) {
+	public Account(String id) {
 		this.id = id;
 		this.balance = 0;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 	

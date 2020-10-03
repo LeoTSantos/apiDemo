@@ -44,7 +44,7 @@ public class AccountControllerTest {
 	@Test
 	public void createAccountWithInitialBalance_shouldReturnOk() throws Exception {
 		
-		EventBody body = new EventBody("deposit", 100, null, 10);
+		EventBody body = new EventBody("deposit", null, "100", 10);
 		
 		Gson gson = new Gson();
 	    String json = gson.toJson(body);
@@ -53,10 +53,11 @@ public class AccountControllerTest {
 				.contentType(MediaType.APPLICATION_JSON)
 	            .content(json))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-	            .andExpect(MockMvcResultMatchers.content().json("{\"destination\": {\"id\":\"100\", \"balance\":10}}"))
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();	
+		
+		Assert.assertEquals("{\"destination\":{\"id\":\"100\",\"balance\":10}}", response);
 	}
 
 }
