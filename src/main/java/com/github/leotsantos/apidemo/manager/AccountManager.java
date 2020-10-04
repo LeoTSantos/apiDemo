@@ -17,7 +17,7 @@ public class AccountManager {
 	
 	public void reset() {
 		accountList.clear();
-		System.out.print("All data cleared.");
+		System.out.print("All data cleared.\n");
 	}
 	
 	public Account getAccount(String id) throws AccountNotFoundException {
@@ -25,7 +25,7 @@ public class AccountManager {
 			if(a.getId().equals(id))
 				return a;
 		}
-		throw new AccountNotFoundException("Account with id " + id + " not found");
+		throw new AccountNotFoundException("Account with id " + id + " not found.\n");
 	}
 	
 	public void makeDeposit(String id, int amount) {
@@ -47,10 +47,10 @@ public class AccountManager {
 	
 	private Account createAccount(String id) {
 		try {
-			System.out.print("Account already created");
+			System.out.print("Account already created.\n");
 			return getAccount(id);
 		} catch (AccountNotFoundException e) {
-			System.out.print("Account Not Found, creating account with id " + id);
+			System.out.print("Account Not Found, creating account with id " + id + ".\n");
 			Account acc = new Account(id);
 			accountList.add(acc);
 			return acc;

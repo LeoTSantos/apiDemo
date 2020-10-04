@@ -149,5 +149,22 @@ public class AccountControllerTest {
 		
 		Assert.assertEquals("{\"origin\":{\"id\":\"100\",\"balance\":0},\"destination\":{\"id\":\"300\",\"balance\":15}}", response);
 	}
+	
+	@Test
+	public void test09_makeTransferFromNonExistingAccount_shouldReturnNotFound() throws Exception {
+		
+		EventBody body = new EventBody("transfer", "200", "300", 15);
+		
+		Gson gson = new Gson();
+	    String json = gson.toJson(body);
+		
+		String response = mockMvc.perform(MockMvcRequestBuilders.post("/event")
+				.contentType(MediaType.APPLICATION_JSON)
+	            .content(json))
+				.andExpect(MockMvcResultMatchers.status().isNotFound())
+	            .andReturn()
+	            .getResponse()
+	            .getContentAsString();
+	}
 
 }

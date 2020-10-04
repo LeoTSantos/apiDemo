@@ -34,7 +34,7 @@ public class AccountController {
     @ResponseStatus(HttpStatus.OK)
     public int getBalance(@RequestParam(name = "account_id") String accountId) throws AccountNotFoundException {
         int balance = manager.getAccount(accountId).getBalance();		
-		System.out.print("Account " + accountId + " has balance of " + balance + "reais");
+		System.out.print("Account " + accountId + " has balance of " + balance + "reais.\n");
         return balance;
     }
 	
