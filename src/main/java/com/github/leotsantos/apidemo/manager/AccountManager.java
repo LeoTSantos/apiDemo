@@ -41,8 +41,8 @@ public class AccountManager {
 	}
 	
 	public void makeTransfer(String origin, String destination, int amount) throws AccountNotFoundException {
-		getAccount(origin).changeBalance(-amount);
-		getAccount(destination).changeBalance(amount);
+		makeWithdraw(origin, amount);
+		makeDeposit(destination, amount);
 	}
 	
 	private Account createAccount(String id) {
