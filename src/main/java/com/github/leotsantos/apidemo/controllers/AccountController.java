@@ -39,7 +39,7 @@ public class AccountController {
     }
 	
 	@RequestMapping(value = "/event", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public String postTransaction(@RequestBody EventBody body) throws AccountNotFoundException, InvalidTransactionException {
 		EventResponse response = new EventResponse();
 		

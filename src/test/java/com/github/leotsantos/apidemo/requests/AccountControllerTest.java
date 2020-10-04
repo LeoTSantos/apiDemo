@@ -56,7 +56,7 @@ public class AccountControllerTest {
 		String response = mockMvc.perform(MockMvcRequestBuilders.post("/event")
 				.contentType(MediaType.APPLICATION_JSON)
 	            .content(json))
-				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.status().isCreated())
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();	
@@ -75,7 +75,7 @@ public class AccountControllerTest {
 		String response = mockMvc.perform(MockMvcRequestBuilders.post("/event")
 				.contentType(MediaType.APPLICATION_JSON)
 	            .content(json))
-				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.status().isCreated())
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();	
@@ -96,7 +96,7 @@ public class AccountControllerTest {
 	}
 	
 	@Test
-	public void test06_makeWithdrawOnNonExistingAccount_shouldReturnNotFound() throws Exception {
+	public void test06_makeWithdrawFromNonExistingAccount_shouldReturnNotFound() throws Exception {
 		
 		EventBody body = new EventBody("withdraw", "200", null, 10);
 		
@@ -110,6 +110,25 @@ public class AccountControllerTest {
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();	
+	}
+	
+	@Test
+	public void test07_makeWithdrawFromExistingAccount_shouldReturnOk() throws Exception {
+		
+		EventBody body = new EventBody("withdraw", "100", null, 5);
+		
+		Gson gson = new Gson();
+	    String json = gson.toJson(body);
+		
+		String response = mockMvc.perform(MockMvcRequestBuilders.post("/event")
+				.contentType(MediaType.APPLICATION_JSON)
+	            .content(json))
+				.andExpect(MockMvcResultMatchers.status().isCreated())
+	            .andReturn()
+	            .getResponse()
+	            .getContentAsString();	
+		
+		Assert.assertEquals("{\"origin\":{\"id\":\"100\",\"balance\":15}}", response);
 	}
 
 }
