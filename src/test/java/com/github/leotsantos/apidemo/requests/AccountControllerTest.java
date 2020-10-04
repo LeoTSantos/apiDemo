@@ -94,5 +94,22 @@ public class AccountControllerTest {
 		
 		Assert.assertEquals("20", response);
 	}
+	
+	@Test
+	public void test06_makeWithdrawOnNonExistingAccount_shouldReturnNotFound() throws Exception {
+		
+		EventBody body = new EventBody("withdraw", "200", null, 10);
+		
+		Gson gson = new Gson();
+	    String json = gson.toJson(body);
+		
+		String response = mockMvc.perform(MockMvcRequestBuilders.post("/event")
+				.contentType(MediaType.APPLICATION_JSON)
+	            .content(json))
+				.andExpect(MockMvcResultMatchers.status().isNotFound())
+	            .andReturn()
+	            .getResponse()
+	            .getContentAsString();	
+	}
 
 }
