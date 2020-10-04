@@ -26,8 +26,9 @@ public class AccountController {
 	
 	@RequestMapping(value = "/reset", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void resetStatus() {
+    public String resetStatus() {
         manager.reset();
+        return "OK";
     }
 	
 	@RequestMapping(value = "/balance", method = RequestMethod.GET)

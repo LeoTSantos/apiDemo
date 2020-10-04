@@ -34,6 +34,8 @@ public class AccountControllerTest {
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();
+		
+		Assert.assertEquals("OK", response);
 	}
 	
 	@Test
@@ -43,6 +45,8 @@ public class AccountControllerTest {
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();
+		
+		Assert.assertEquals("0", response);
 	}
 	
 	@Test
@@ -110,6 +114,8 @@ public class AccountControllerTest {
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();	
+		
+		Assert.assertEquals("0", response);
 	}
 	
 	@Test
@@ -165,6 +171,8 @@ public class AccountControllerTest {
 	            .andReturn()
 	            .getResponse()
 	            .getContentAsString();
+		
+		Assert.assertEquals("0", response);
 	}
 
 }
